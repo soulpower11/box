@@ -44,6 +44,5 @@ RUN dpkg --add-architecture armhf && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists
-    
 
 ENTRYPOINT ["box64"]
