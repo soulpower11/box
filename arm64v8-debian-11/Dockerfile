@@ -15,10 +15,6 @@ ENV  USER=container HOME=/home/container
 
 WORKDIR /home/container
 
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD ["/bin/bash", "/entrypoint.sh"]
-
 RUN git clone https://github.com/ptitSeb/box86.git; mkdir /box86/build && \
     git clone https://github.com/ptitSeb/box64.git; mkdir /box64/build
 
