@@ -22,8 +22,8 @@ RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo &&
     make install DESTDIR=/tmp/install
 
 FROM debian:bullseye-slim
-LABEL "maintainer"="Weilbyte <me@weilbyte.dev>"
-LABEL "org.opencontainers.image.source"="https://github.com/weilbyte/box"
+LABEL "maintainer"="soulpower11 <soulpower11@protonmail.com>"
+LABEL "org.opencontainers.image.source"="https://github.com/soulpower11/box"
 
 COPY --from=build /tmp/install /
 

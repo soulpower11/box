@@ -14,9 +14,18 @@ RUN cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make install DESTDIR=/tmp/install
 
 FROM debian:bullseye-slim
-LABEL "maintainer"="Weilbyte <me@weilbyte.dev>"
-LABEL "org.opencontainers.image.source"="https://github.com/weilbyte/box"
+LABEL "maintainer"="soulpower11 <soulpower11@protonmail.com>"
+LABEL "org.opencontainers.image.source"="https://github.com/soulpower11/box"
 
 COPY --from=build /tmp/install /
 
-ENTRYPOINT ["box86"]
+RUN adduser --disabled-password --home /home/container container
+
+USER container
+ENV  USER=container HOME=/home/container
+
+WORKDIR /home/container
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+CMD ["/bin/bash", "/entrypoint.sh"]
