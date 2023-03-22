@@ -34,6 +34,15 @@ RUN dpkg --add-architecture armhf && \
     apt-get clean autoclean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists
 
+RUN         apt update -y \
+            && apt upgrade -y \
+            && apt install -y apt-transport-https wget curl iproute2 libgdiplus \
+            && wget https://dot.net/v1/dotnet-install.sh \
+            && D_V="$(curl -sSL https://dotnet.microsoft.com/en-us/download/dotnet/6.0 | grep -i  '<h3 id="sdk-6.*">SDK 6.*.*</h3>'  | head -1 | awk -F\" '{print $3}' | awk '{print $2;}' | sed 's/<\/h3>//g')" \   
+            && chmod +x dotnet-install.sh \
+			&& ./dotnet-install.sh -i /usr/share -v $D_V \
+            && ln -s /usr/share/dotnet /usr/bin/dotnet
+
 RUN adduser --disabled-password --home /home/container container
 
 USER container
