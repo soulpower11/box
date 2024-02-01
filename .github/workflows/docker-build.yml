@@ -67,4 +67,3 @@ jobs:
         run: |
           docker buildx imagetools create soulpower11/box:armv7-debian-11 soulpower11/box:arm64v8-debian-11 --tag soulpower11/box:debian-11 && \
           docker buildx imagetools create soulpower11/box:debian-11 --tag soulpower11/box:latest
-    
